@@ -64,7 +64,7 @@ public class UserServiceImplementation implements UserService {
       Optional<User> user = userRepository.findById(request.getId());
       GetSingleUserResponse getSingleUserResponse = new GetSingleUserResponse();
       getSingleUserResponse.setSuccess(true);
-      getSingleUserResponse.setSystemMessage("User Found");
+      getSingleUserResponse.setSystemMessage("User Foundd");
       getSingleUserResponse.setData(user);
       return getSingleUserResponse;
     }
