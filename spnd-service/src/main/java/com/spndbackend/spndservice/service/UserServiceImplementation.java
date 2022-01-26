@@ -1,9 +1,9 @@
 package com.spndbackend.spndservice.service;
 
-import com.spndbackend.spndservice.models.AddUserResponse;
-import com.spndbackend.spndservice.models.DeleteUserRequest;
-import com.spndbackend.spndservice.models.DeletedUserResponse;
 import com.spndbackend.spndservice.entity.User;
+import com.spndbackend.spndservice.entity.Value;
+import com.spndbackend.spndservice.models.*;
+
 import com.spndbackend.spndservice.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,8 +18,13 @@ public class UserServiceImplementation implements UserService {
     UserRepository userRepository;
 
     @Override
-    public List<User> getallUsers() {
-        return userRepository.findAll();
+    public GetAllUsersResponse getallUsers() {
+         List<User> users = userRepository.findAll();
+         GetAllUsersResponse getAllUsersResponse = new GetAllUsersResponse();
+         getAllUsersResponse.setSuccess(true);
+         getAllUsersResponse.setSystemMessage("List of Users Retrieved");
+         getAllUsersResponse.setData(users);
+         return getAllUsersResponse;
     }
 
     @Override
@@ -33,24 +38,35 @@ public class UserServiceImplementation implements UserService {
     }
 
     @Override
-
     public DeletedUserResponse deleteUserById(DeleteUserRequest request) {
         DeletedUserResponse deletedUserResponse = new DeletedUserResponse();
 
         if (userRepository.findById(request.getId()).isPresent()) {
             Optional<User> user = userRepository.findById(request.getId());
-            deletedUserResponse.setUserDeleted(user);
+            deletedUserResponse.setData(user);
             try {
                 userRepository.deleteById(request.getId());
-                deletedUserResponse.setDeleted(true);
+                deletedUserResponse.setSuccess(true);
+                deletedUserResponse.setSystemMessage("User Deleted");
             } catch (Exception e) {
                 throw e;
             }
         } else {
-            deletedUserResponse.setUserDeleted(null);
-            deletedUserResponse.setDeleted(false);
+            deletedUserResponse.setData(null);
+            deletedUserResponse.setSuccess(false);
         }
 
         return deletedUserResponse;
     }
+
+    @Override
+    public GetSingleUserResponse findUserById(GetSingleUserRequest request) {
+      Optional<User> user = userRepository.findById(request.getId());
+      GetSingleUserResponse getSingleUserResponse = new GetSingleUserResponse();
+      getSingleUserResponse.setSuccess(true);
+      getSingleUserResponse.setSystemMessage("User Found");
+      getSingleUserResponse.setData(user);
+      return getSingleUserResponse;
+    }
+
 }
