@@ -15,5 +15,5 @@ public class DeletedUserResponse implements Serializable {
 
     boolean success;
     String systemMessage;
-    Optional<User> data;
+    User data;
 }

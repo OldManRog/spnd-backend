@@ -14,5 +14,5 @@ import java.util.Optional;
 public class GetAllUsersResponse {
     Boolean success;
     String systemMessage;
-    List<User> data;
+    List<UserResponse> data;
 }

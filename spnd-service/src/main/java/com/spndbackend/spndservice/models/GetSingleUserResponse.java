@@ -13,5 +13,5 @@ import java.util.Optional;
 public class GetSingleUserResponse {
     private boolean success;
     private String systemMessage;
-    private Optional<User> data;
+    private SingleUser data;
 }

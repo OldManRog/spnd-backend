@@ -39,10 +39,9 @@ public class UserController {
      */
     @GetMapping("/users")
     GetAllUsersResponse getUsers() {
-        GetAllUsersResponse users = userService.getallUsers();
+       GetAllUsersResponse users = userService.getallUsers();
         log.info("List of All Users :: ::" + users);
         return users;
-
     }
 
     /**

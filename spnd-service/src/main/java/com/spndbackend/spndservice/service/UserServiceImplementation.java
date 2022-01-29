@@ -5,36 +5,50 @@ import com.spndbackend.spndservice.entity.Value;
 import com.spndbackend.spndservice.models.*;
 
 import com.spndbackend.spndservice.repository.UserRepository;
+import lombok.extern.log4j.Log4j2;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
 @Service
+@Log4j2
 public class UserServiceImplementation implements UserService {
 
     @Autowired
     UserRepository userRepository;
 
+
     @Override
     public GetAllUsersResponse getallUsers() {
-         List<User> users = userRepository.findAll();
-         GetAllUsersResponse getAllUsersResponse = new GetAllUsersResponse();
-         getAllUsersResponse.setSuccess(true);
-         getAllUsersResponse.setSystemMessage("List of Users Retrieved");
-         getAllUsersResponse.setData(users);
-         return getAllUsersResponse;
+        List<User> users = userRepository.findAll();
+        List<UserResponse> userResponseLists = new ArrayList<>();
+        users.forEach((user -> {
+            UserResponse userResponse = new UserResponse();
+            SingleUser singleUser = new SingleUser();
+            BeanUtils.copyProperties(user,singleUser);
+            userResponse.setUser(singleUser);
+            userResponseLists.add(userResponse);
+        }));
+        GetAllUsersResponse getAllUsersResponse = new GetAllUsersResponse();
+        getAllUsersResponse.setSuccess(true);
+        getAllUsersResponse.setSystemMessage("List of Users Retrieved");
+        getAllUsersResponse.setData(userResponseLists);
+        return getAllUsersResponse;
     }
 
     @Override
     public AddUserResponse addUser(User user) {
-          User newUser = userRepository.save(user);
-          AddUserResponse addUserResponse = new AddUserResponse();
-          addUserResponse.setData(newUser);
-          addUserResponse.setSystemMessage("User is Added");
-          addUserResponse.setSuccess(true);
-          return addUserResponse;
+        User newUser = userRepository.save(user);
+        AddUserResponse addUserResponse = new AddUserResponse();
+        addUserResponse.setData(newUser);
+        addUserResponse.setSystemMessage("User is Added");
+        addUserResponse.setSuccess(true);
+        return addUserResponse;
     }
 
     @Override
@@ -43,7 +57,7 @@ public class UserServiceImplementation implements UserService {
 
         if (userRepository.findById(request.getId()).isPresent()) {
             Optional<User> user = userRepository.findById(request.getId());
-            deletedUserResponse.setData(user);
+            deletedUserResponse.setData(user.get());
             try {
                 userRepository.deleteById(request.getId());
                 deletedUserResponse.setSuccess(true);
@@ -61,12 +75,14 @@ public class UserServiceImplementation implements UserService {
 
     @Override
     public GetSingleUserResponse findUserById(GetSingleUserRequest request) {
-      Optional<User> user = userRepository.findById(request.getId());
-      GetSingleUserResponse getSingleUserResponse = new GetSingleUserResponse();
-      getSingleUserResponse.setSuccess(true);
-      getSingleUserResponse.setSystemMessage("User Foundd");
-      getSingleUserResponse.setData(user);
-      return getSingleUserResponse;
+        Optional<User> user = userRepository.findById(request.getId());
+        GetSingleUserResponse getSingleUserResponse = new GetSingleUserResponse();
+        SingleUser singleUser = new SingleUser();
+        BeanUtils.copyProperties(user.get(),singleUser);
+        getSingleUserResponse.setSuccess(true);
+        getSingleUserResponse.setSystemMessage("User Foundd");
+        getSingleUserResponse.setData(singleUser);
+        return getSingleUserResponse;
     }
 
 }

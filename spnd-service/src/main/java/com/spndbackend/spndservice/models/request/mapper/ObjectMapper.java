@@ -32,15 +32,16 @@ public class ObjectMapper {
     }
 
     public Value mapToValueEntity(AddValueRequest dto, User user) {
-        Value entity = new Value();
-        entity.setBudgetFrequency(dto.getBudgetFrequency());
-        entity.setBudgetedAmount(dto.getBudgetedAmount());
-        entity.setFullyValued(dto.isFullyValued());
-        entity.setLastUpdateAmount(dto.getLastUpdateAmount());
-        entity.setValueAmount(dto.getValueAmount());
-        entity.setValueByDate(dto.getValueByDate());
-        entity.setUser(user);
-        return entity;
+        Value value = new Value();
+        value.setBudgetFrequency(dto.getBudgetFrequency());
+        value.setBudgetedAmount(dto.getBudgetedAmount());
+        value.setFullyValued(dto.isFullyValued());
+        value.setLastUpdateAmount(dto.getLastUpdateAmount());
+        value.setValueName(dto.getValueName());
+        value.setValueAmount(dto.getValueAmount());
+        value.setValueByDate(dto.getValueByDate());
+        value.setUser(user);
+        return value;
     }
 
 }

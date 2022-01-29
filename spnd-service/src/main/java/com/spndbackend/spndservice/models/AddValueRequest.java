@@ -17,6 +17,7 @@ public class AddValueRequest {
     int budgetedAmount;
     boolean isFullyValued;
     int lastUpdateAmount;
+    String valueName;
     int valueAmount;
     Date valueByDate;
     int userId;
