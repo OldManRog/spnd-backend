@@ -8,6 +8,7 @@ import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 import java.util.Optional;
 
 @Entity(name = "value_table") // This tells Hibernate to make a table out of this class
@@ -56,6 +57,10 @@ public class Value {
     @JsonProperty("isFullyValued")
     @Column(name = "is_Fully_Valued")
     boolean isFullyValued;
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "value",cascade = CascadeType.ALL)
+    @JsonIgnoreProperties("value")
+    private List<Transaction> transactions;
 
 
 }
