@@ -1,4 +1,4 @@
-package com.spndbackend.spndservice.models;
+package com.spndbackend.spndservice.models.value;
 
 import com.spndbackend.spndservice.entity.Value;
 import lombok.AllArgsConstructor;

@@ -1,9 +1,8 @@
 package com.spndbackend.spndservice.service;
 
 import com.spndbackend.spndservice.entity.User;
-import com.spndbackend.spndservice.entity.Value;
-import com.spndbackend.spndservice.models.*;
 
+import com.spndbackend.spndservice.models.user.*;
 import com.spndbackend.spndservice.repository.UserRepository;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.BeanUtils;
@@ -11,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 

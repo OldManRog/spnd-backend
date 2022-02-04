@@ -1,6 +1,6 @@
-package com.spndbackend.spndservice.models;
+package com.spndbackend.spndservice.models.user;
 
-import com.spndbackend.spndservice.entity.User;
+import com.spndbackend.spndservice.models.user.SingleUser;
 import lombok.*;
 
 @Data

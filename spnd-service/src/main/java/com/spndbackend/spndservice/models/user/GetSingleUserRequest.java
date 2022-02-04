@@ -1,4 +1,4 @@
-package com.spndbackend.spndservice.models;
+package com.spndbackend.spndservice.models.user;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

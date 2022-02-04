@@ -1,24 +1,17 @@
-package com.spndbackend.spndservice.models;
+package com.spndbackend.spndservice.models.user;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.spndbackend.spndservice.entity.Value;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Date;
-import java.util.List;
 
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
-public class SingleUser {
-
-    @JsonProperty("userId")
-    @Column(name = "user_Id")
-    private Integer userId;
+@AllArgsConstructor
+public class AddUserRequest implements Serializable {
     @JsonProperty("name")
     private String name;
     @JsonProperty("email")

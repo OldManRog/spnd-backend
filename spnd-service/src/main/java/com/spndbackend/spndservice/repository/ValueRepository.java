@@ -10,5 +10,6 @@ import javax.persistence.criteria.CriteriaBuilder;
 public interface ValueRepository extends JpaRepository<Value,Integer> {
 
 
+
 }
 

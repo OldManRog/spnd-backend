@@ -1,4 +1,4 @@
-package com.spndbackend.spndservice.models;
+package com.spndbackend.spndservice.models.user;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;

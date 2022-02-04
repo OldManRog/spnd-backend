@@ -1,19 +1,12 @@
 package com.spndbackend.spndservice.models.request.mapper;
 
 import com.spndbackend.spndservice.entity.Value;
-import com.spndbackend.spndservice.models.AddUserRequest;
+import com.spndbackend.spndservice.models.user.AddUserRequest;
 import com.spndbackend.spndservice.entity.User;
-import com.spndbackend.spndservice.models.AddValueRequest;
-import com.spndbackend.spndservice.models.GetSingleUserRequest;
+import com.spndbackend.spndservice.models.value.AddValueRequest;
 import com.spndbackend.spndservice.repository.UserRepository;
-import com.spndbackend.spndservice.service.UserService;
-import com.spndbackend.spndservice.service.ValueService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.swing.text.html.Option;
-import java.util.Optional;
 
 @Component
 public class ObjectMapper {
