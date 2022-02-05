@@ -6,8 +6,8 @@ import com.spndbackend.spndservice.models.user.*;
 import com.spndbackend.spndservice.models.value.AddValueRequest;
 import com.spndbackend.spndservice.models.value.AddValueResponse;
 import com.spndbackend.spndservice.repository.UserRepository;
-import com.spndbackend.spndservice.service.UserService;
-import com.spndbackend.spndservice.service.ValueService;
+import com.spndbackend.spndservice.service.user.UserService;
+import com.spndbackend.spndservice.service.value.ValueService;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -92,6 +92,9 @@ public class UserController {
           return valueService.addValue(value);
         }).orElseThrow(RuntimeException::new);
     }
+
+
+
 
 
 

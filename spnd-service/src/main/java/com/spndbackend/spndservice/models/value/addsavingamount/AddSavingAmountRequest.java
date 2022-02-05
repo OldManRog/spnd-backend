@@ -1,5 +1,7 @@
 package com.spndbackend.spndservice.models.value.addsavingamount;
 
+import com.spndbackend.spndservice.entity.Transaction;
+import com.spndbackend.spndservice.entity.Value;
 import lombok.*;
 
 import java.util.Date;
@@ -12,7 +14,8 @@ import java.util.Date;
 public class AddSavingAmountRequest {
 
     Integer transactionAmount;
-    Integer valueId;
     Date transactionDate;
+    Integer valueId;
+    Value value;
 
 }

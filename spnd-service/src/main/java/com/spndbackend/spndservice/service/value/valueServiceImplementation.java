@@ -1,6 +1,5 @@
-package com.spndbackend.spndservice.service;
+package com.spndbackend.spndservice.service.value;
 
-import com.spndbackend.spndservice.entity.User;
 import com.spndbackend.spndservice.entity.Value;
 import com.spndbackend.spndservice.models.user.SingleValue;
 import com.spndbackend.spndservice.models.value.AddValueResponse;
@@ -48,7 +47,7 @@ public class valueServiceImplementation implements ValueService {
     public GetAllValuesByUserIdResponse getAllValuesByUserId(GetAllValuesByUserIdRequest request) {
         GetAllValuesByUserIdResponse getAllValuesByUserIdResponse = new GetAllValuesByUserIdResponse();
         List<ValueResponse> valueResponseList = new ArrayList<>();
-        userRepository.findById(request.getUserId()).stream().forEach((user) -> {
+        userRepository.findById(request.getUserId()).ifPresent((user) -> {
             log.info("getAllValuesByUserId() value :: :: " + user);
             user.getValues().forEach((value -> {
                 ValueResponse valueResponse = new ValueResponse();
@@ -87,25 +86,25 @@ public class valueServiceImplementation implements ValueService {
         return deleteSingleValueResponse;
     }
 
-    @Override
-    @Transactional
-    public AddSavingAmountResponse addSavingAmount(AddSavingAmountRequest request) throws Exception {
-        AddSavingAmountResponse addSavingAmountResponse = new AddSavingAmountResponse();
-        SingleValue singleValue = new SingleValue();
-        Optional<Value> value = valueRepository.findById(request.getValueId());
-        value.get().setValueId(request.getValueId());
-        value.get().setBudgetedAmount(value.get().getBudgetedAmount() + request.getTransactionAmount());
-        value.get().setLastUpdateAmount(request.getTransactionAmount());
-        if ((value.get().getBudgetedAmount() + request.getTransactionAmount()) >= value.get().getValueAmount()) {
-            value.get().setFullyValued(true);
-        }
-        valueRepository.save(value.get());
-        BeanUtils.copyProperties(value.get(), singleValue);
-        addSavingAmountResponse.setSuccess(true);
-        addSavingAmountResponse.setSystemMessage("Value is update");
-        addSavingAmountResponse.setData(singleValue);
-        return addSavingAmountResponse;
-    }
+//    @Override
+//    @Transactional
+//    public AddSavingAmountResponse addSavingAmount(AddSavingAmountRequest request) throws Exception {
+//        AddSavingAmountResponse addSavingAmountResponse = new AddSavingAmountResponse();
+//        SingleValue singleValue = new SingleValue();
+//        Optional<Value> value = valueRepository.findById(request.getValueId());
+//        value.get().setValueId(request.getValueId());
+//        value.get().setBudgetedAmount(value.get().getBudgetedAmount() + request.getTransactionAmount());
+//        value.get().setLastUpdateAmount(request.getTransactionAmount());
+//        if ((value.get().getBudgetedAmount() + request.getTransactionAmount()) >= value.get().getValueAmount()) {
+//            value.get().setFullyValued(true);
+//        }
+//        valueRepository.save(value.get());
+//        BeanUtils.copyProperties(value.get(), singleValue);
+//        addSavingAmountResponse.setSuccess(true);
+//        addSavingAmountResponse.setSystemMessage("Value is update");
+//        addSavingAmountResponse.setData(singleValue);
+//        return addSavingAmountResponse;
+//    }
 
 
 }

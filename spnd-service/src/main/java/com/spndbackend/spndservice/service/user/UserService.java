@@ -1,4 +1,4 @@
-package com.spndbackend.spndservice.service;
+package com.spndbackend.spndservice.service.user;
 
 import com.spndbackend.spndservice.entity.User;
 import com.spndbackend.spndservice.models.user.*;

@@ -1,4 +1,4 @@
-package com.spndbackend.spndservice.service;
+package com.spndbackend.spndservice.service.value;
 
 import com.spndbackend.spndservice.entity.Value;
 import com.spndbackend.spndservice.models.value.AddValueResponse;
@@ -17,7 +17,7 @@ public interface ValueService {
 
      DeleteSingleValueResponse deleteValue(DeleteSingleValueRequest request);
 
-     AddSavingAmountResponse addSavingAmount(AddSavingAmountRequest request) throws Exception;
+//     AddSavingAmountResponse addSavingAmount(AddSavingAmountRequest request) throws Exception;
 
 
 
